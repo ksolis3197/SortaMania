@@ -18,6 +18,12 @@ public class challenges {
 		return findMedian(arr);
 	}
 	
+	//this function sorts the list and if it finds the string, return the index of ot
+	public static int challengeTwo(String[] arr, String str)
+	{
+		
+	}
+	
 	//this function finds the median of the array
 	public static int findMedian(int[] arr)
 	{
