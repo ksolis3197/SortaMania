@@ -5,19 +5,20 @@ public class challenges {
 	public static void main(String[] args)
 	{
 		//checks challengeOne
-		int[] arr = createArray(10);
-		int median = challengeOne(arr);
+		int[] arr1 = createArray(10);
+		double median = challengeOne(arr1);
 		System.out.println("median: " + median);
 		
 		//checks challengeTwo
-		//stack overflow error
+			//stack overflow error
 		String[] arr2 = {"hey", "hi", "bye"};
 		int index = challengeTwo(arr2, "bye");
 		System.out.println("index of string: " + index);
+		
 	}
 	
 	//this function sorts the array and returns the median
-	public static int challengeOne(int[] arr)
+	public static double challengeOne(int[] arr)
 	{
 		printIntArray(arr);
 		SortUtilities.quickSort(arr, 0, arr.length-1);
@@ -43,12 +44,12 @@ public class challenges {
 	}
 	
 	//this function finds the median of the array
-	public static int findMedian(int[] arr)
+	public static double findMedian(int[] arr)
 	{
-		int middle = 0;
+		double middle = 0.0;
 		if (arr.length%2 == 0)
 		{
-			middle = arr[(arr.length/2 + (arr.length/2 - 1))/2];
+			middle = (arr[arr.length/2] + arr[arr.length/2 - 1])/2;
 		}
 		else
 		{
@@ -57,6 +58,7 @@ public class challenges {
 		return middle;
 	}
 	
+	//creates a random array of integers
 	public static int[] createArray(int n)
 	{
 		Random rnd = new Random();
@@ -68,6 +70,13 @@ public class challenges {
 		return arr;
 	}
 	
+	//creates a random 5 character string
+	public static String createRandomString()
+	{
+		
+	}
+	
+	//prints each number in the array
 	public static void printIntArray(int[] arr)
 	{
 		for (int num : arr)
@@ -77,6 +86,7 @@ public class challenges {
 		System.out.println();
 	}
 	
+	//prints each string in the array
 	public static void printStringArray(String[] arr)
 	{
 		for (String str : arr)
