@@ -18,10 +18,10 @@ public class challenges {
 	}
 	
 	//this function sorts the array and returns the median
-	public static double challengeOne(int[] arr)
+	public static int challengeOne(int[] arr)
 	{
 		printIntArray(arr);
-		SortUtilities.quickSort(arr, 0, arr.length-1);
+		quickSort(arr, 0, arr.length-1);
 		printIntArray(arr);
 		return findMedian(arr);
 	}
@@ -30,7 +30,7 @@ public class challenges {
 	public static int challengeTwo(String[] arr, String query)
 	{
 		printStringArray(arr);
-		SortUtilities.bubbleSort(arr);
+		bubbleSort(arr);
 		printStringArray(arr);
 		
 		for (int i = 0; i < arr.length; i++)
@@ -44,22 +44,22 @@ public class challenges {
 	}
 	
 	//this function sorts a mostly sorted list and returns the median 
-	public static double challengeThree(int[] arr)
+	public static int challengeThree(int[] arr)
 	{
 		return challengeOne(arr);
 	}
 	
 	//this function sorts the sub arrays first, then the arrays by the median value, returns index of the median
-	public static double challengeFour(int[][] arr)
+	public static int challengeFour(int[][] arr)
 	{
 		int[] arr2 = new int[arr.length];
 		for (int i = 0; i<arr.length; i++)
 		{
-			SortUtilities.quickSort(arr[i], 0, arr[i].length);
+			quickSort(arr[i], 0, arr[i].length);
 			
 			arr2[i] = (int) findMedian(arr[i]);
 		}
-		SortUtilities.quickSort(arr2, 0, arr2.length);
+		quickSort(arr2, 0, arr2.length);
 		
 		return findMedian(arr2);
 	}
@@ -71,16 +71,16 @@ public class challenges {
 	}
 	
 	//this function finds the median of the array
-	public static double findMedian(int[] arr)
+	public static int findMedian(int[] arr)
 	{
-		double middle = 0.0;
+		int middle = 0;
 		if (arr.length%2 == 0)
 		{
-			middle = (double)(arr[arr.length/2] + arr[(arr.length/2) - 1])/2;
+			middle = (int)(arr[arr.length/2] + arr[(arr.length/2) - 1])/2;
 		}
 		else
 		{
-			middle = (double)arr[arr.length/2-1];
+			middle = (int)arr[arr.length/2-1];
 		}
 		return middle;
 	}
@@ -121,5 +121,66 @@ public class challenges {
 			System.out.print(str + " ");
 		}
 		System.out.println();
+	}
+	
+	//working int partition
+	public static int partition(int[] list1, int front, int back)
+	{
+		//returns position of the pivot 
+		int pivot = list1[front];
+		int pivPosition = front;
+		
+		for (int i = front+1; i <= back; i++)
+		{
+			if (list1[i]<=pivot)
+			{
+				for (int j = 0; j<i-pivPosition; j++)
+				{
+					swap(list1,i-j,i-j-1);
+				}
+				pivPosition++;
+			}
+		}
+		return pivPosition;
+	}
+	
+	//working int quickSort
+	public static void quickSort(int[] list1, int front, int back)
+	{
+		if (front < back)
+		{
+			int pivPosition = partition(list1, front, back);
+			quickSort(list1,front,pivPosition-1);
+			quickSort(list1,pivPosition+1,back);
+		}
+	}
+	
+	//int swap
+	public static void swap(int[] arr, int i, int j)
+	{
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+	
+	//string sort
+	public static void bubbleSort(String[] list1)
+	{
+		for(int i = 0; i<list1.length-1; i++) 
+		{
+			if(list1[i+1].compareTo(list1[i]) <= 0)
+			{
+				swapS(list1,i,i+1);
+				bubbleSort(list1);
+			}
+		}
+	}
+	
+	//string swap
+	public static void swapS(String[] arr, int i, int j)
+	{
+		String temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
 	}
 }
