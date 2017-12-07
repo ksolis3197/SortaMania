@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class challenges {
 
+	//added merge, mergesort, create2Darray
+	
 	public static void main(String[] args)
 	{	
 		//checks challengeOne
